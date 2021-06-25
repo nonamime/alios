@@ -243,6 +243,16 @@ int netmgr_get_ifconfig(netmgr_hdl_t hdl, netmgr_ifconfig_info_t* info)
 
 void netmgr_set_auto_reconnect(netmgr_hdl_t hdl, bool enable)
 {
+    if(get_hdl_type(hdl) == NETMGR_TYPE_UNKNOWN)
+    {
+        hdl = netmgr_get_dev(DEV_WIFI_NAME);
+        if(hdl == -1)
+        {
+            printf("get dev %s handler failed!\n\r", DEV_WIFI_NAME);
+            return;
+        }
+    }
+
     if(get_hdl_type(hdl) == NETMGR_TYPE_WIFI) {
         netmgr_wifi_auto_reconnect(enable);
     }

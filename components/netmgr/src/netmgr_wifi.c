@@ -605,7 +605,7 @@ static void reconnect_task_handle(void* arg)
             memset(&params, 0, sizeof(params));
             NETMGR_WIFI_LOGI("%s:%d\n", __func__, __LINE__);
             //netmgr_stat_chg_event(m, NOTIFY_CONN_RECONNECT, NULL);
-            if(0 != netmgr_wifi_connect(0, &params)) {
+            if(0 != netmgr_wifi_connect(conn->hdl, &params)) {
                 if(ioctl(conn->hdl, WIFI_DEV_CMD_CANCEL_CONNECT, NULL) != 0) {
                     NETMGR_WIFI_LOGE("WIFI_DEV_CMD_CANCEL_CONNECT failed\n");
                 }
